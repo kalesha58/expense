@@ -1,29 +1,70 @@
-import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { useFonts } from 'expo-font';
-import { Stack } from 'expo-router';
-import { StatusBar } from 'expo-status-bar';
-import 'react-native-reanimated';
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
+import { Stack } from "expo-router";
+import * as SplashScreen from "expo-splash-screen";
+import React, { useEffect } from "react";
+import { GestureHandlerRootView } from "react-native-gesture-handler";
+import { AuthProvider } from "@/context/AuthContext";
+import { ThemeProvider } from "@/context/ThemeContext";
+import { useAuth } from "@/hooks/useAuth";
+import SplashScreenComponent from './SplashScreen';
 
-import { useColorScheme } from '@/hooks/useColorScheme';
+// Prevent the splash screen from auto-hiding before asset loading is complete.
+SplashScreen.preventAutoHideAsync();
 
-export default function RootLayout() {
-  const colorScheme = useColorScheme();
-  const [loaded] = useFonts({
-    SpaceMono: require('../assets/fonts/SpaceMono-Regular.ttf'),
-  });
+const queryClient = new QueryClient();
 
-  if (!loaded) {
-    // Async font loading only occurs in development.
+// Persist splash state across the app session
+let splashShown = false;
+
+// Root layout with authentication check
+function RootLayoutNav() {
+  const { isAuthenticated, isLoading } = useAuth();
+  const [showSplash, setShowSplash] = React.useState(!splashShown);
+
+  React.useEffect(() => {
+    if (!splashShown) {
+      const timer = setTimeout(() => {
+        setShowSplash(false);
+        splashShown = true;
+      }, 3000);
+      return () => clearTimeout(timer);
+    } else {
+      setShowSplash(false);
+    }
+  }, []);
+
+  if (isLoading) {
     return null;
+  }
+  if (showSplash) {
+    return <SplashScreenComponent />;
   }
 
   return (
-    <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>
-      <Stack>
+    <Stack screenOptions={{ headerShown: false }}>
+      {!isAuthenticated ? (
+        <Stack.Screen name="(auth)/login" options={{ headerShown: false }} />
+      ) : (
         <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
-        <Stack.Screen name="+not-found" />
-      </Stack>
-      <StatusBar style="auto" />
-    </ThemeProvider>
+      )}
+    </Stack>
+  );
+}
+
+export default function RootLayout() {
+  useEffect(() => {
+    SplashScreen.hideAsync();
+  }, []);
+
+  return (
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider>
+        <AuthProvider>
+          <GestureHandlerRootView style={{ flex: 1 }}>
+            <RootLayoutNav />
+          </GestureHandlerRootView>
+        </AuthProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
   );
 }
