@@ -1,50 +1,86 @@
-# Welcome to your Expo app 👋
+# Oracle iExpense Mobile App
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Oracle iExpense is a modern, enterprise-grade mobile application for managing business expenses, built with React Native and Expo. It streamlines the process of submitting, tracking, and approving expenses, and integrates seamlessly with Oracle E-Business Suite (EBS).
 
-## Get started
+## Overview
 
-1. Install dependencies
+- **Purpose:** Simplify and automate expense reporting for employees and managers.
+- **Integration:** Real-time sync with Oracle EBS backend via secure REST APIs.
+- **Audience:** Enterprise users, finance teams, and IT administrators.
 
+## Key Features
+
+- **Real-time Sync:** Instant synchronization with Oracle EBS backend systems.
+- **Policy Compliance:** Automated validation and compliance checking.
+- **Enterprise Ready:** Scalable for large organizations.
+- **Multi-language Support:** English, Spanish, French (customizable).
+- **Dark/Light Mode:** User-selectable themes.
+- **Notifications:** Status updates and reminders.
+- **Analytics:** Visual statistics and compliance metrics.
+
+## App Structure & Navigation
+
+- **Splash Screen:** Welcome and onboarding message.
+- **Authentication:** Secure login (username/password, SSO toggle).
+- **Dashboard:** Quick access to create/view expenses, statistics, and recent activity.
+- **Expenses:**
+  - List, filter, and search expenses
+  - Create new expense report
+  - Add line items (with receipt upload)
+  - Review and submit for approval
+  - View details and status
+- **Statistics:** Charts and metrics for spending, compliance, and trends.
+- **Settings:**
+  - Profile (view user info)
+  - Account (change password, SSO, language)
+  - Preferences (theme, notifications)
+  - About & Help
+
+## Setup & Installation
+
+1. **Clone the repository:**
+   ```bash
+   git clone <repo-url>
+   cd expense
+   ```
+2. **Install dependencies:**
    ```bash
    npm install
    ```
-
-2. Start the app
-
+3. **Start the app:**
    ```bash
    npx expo start
    ```
+   - Use Expo Go, Android/iOS emulator, or web browser as prompted.
 
-In the output, you'll find options to open the app in a
+## Scripts
+- `npm start` – Start the Expo development server
+- `npm run reset-project` – Reset to a blank starter
+- `npm run android` / `npm run ios` / `npm run web` – Platform-specific launch
+- `npm run lint` – Lint the codebase
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## Tech Stack
+- **React Native** (Expo)
+- **TypeScript**
+- **expo-router** (file-based navigation)
+- **@tanstack/react-query** (data fetching)
+- **zustand** (state management)
+- **react-native-paper** (UI components)
+- **i18next** (localization)
+- **lucide-react-native** (icons)
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+## Mock Data & Testing
+- The app uses mock data for expenses, statistics, and user info (see `constants/` and `app/(tabs)/expenses/`).
+- No backend or Oracle EBS connection is required for local development/testing.
 
-## Get a fresh project
+## Contribution Guidelines
+- Fork the repo and create a feature branch.
+- Follow the existing code style and naming conventions.
+- Submit a pull request with a clear description.
 
-When you're ready, run:
+## License
+This project is for demonstration and internal enterprise use only.
 
-```bash
-npm run reset-project
-```
+---
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+For detailed usage and developer instructions, see [`guides.md`](./guides.md).

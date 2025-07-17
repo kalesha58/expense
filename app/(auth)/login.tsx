@@ -108,24 +108,38 @@ export default function LoginScreen() {
               }, error && error.toLowerCase().includes('username') && { borderColor: colors.expense }]}
               autoCapitalize="none"
               value={username}
-              placeholder="Enter email"
+              placeholder="Enter Username"
               placeholderTextColor={colors.placeholder}
               onChangeText={setUsername}
             />
 
             {/* Password Input */}
-            <TextInput
-              style={[styles.input, { 
-                backgroundColor: colors.inputBackground, 
-                borderColor: colors.border, 
-                color: colors.text 
-              }, error && error.toLowerCase().includes('password') && { borderColor: colors.expense }]}
-              value={password}
-              placeholder="Enter password"
-              placeholderTextColor={colors.placeholder}
-              secureTextEntry={!showPassword}
-              onChangeText={setPassword}
-            />
+            <View style={{ width: '100%', position: 'relative', marginBottom: 16 }}>
+              <TextInput
+                style={[styles.input, { 
+                  backgroundColor: colors.inputBackground, 
+                  borderColor: colors.border, 
+                  color: colors.text,
+                  paddingRight: 48 // space for the icon
+                }, error && error.toLowerCase().includes('password') && { borderColor: colors.expense }]}
+                value={password}
+                placeholder="Enter Password"
+                placeholderTextColor={colors.placeholder}
+                secureTextEntry={!showPassword}
+                onChangeText={setPassword}
+              />
+              <TouchableOpacity
+                onPress={() => setShowPassword(!showPassword)}
+                style={{ position: 'absolute', right: 16, top: 0, height: '100%', justifyContent: 'center' }}
+                hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
+              >
+                {showPassword ? (
+                  <EyeOff size={22} color={colors.placeholder} />
+                ) : (
+                  <Eye size={22} color={colors.placeholder} />
+                )}
+              </TouchableOpacity>
+            </View>
 
             {/* Sign In Button */}
             <TouchableOpacity 

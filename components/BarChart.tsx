@@ -24,6 +24,16 @@ const BAR_WIDTH = Math.min(24, (CHART_WIDTH / 7) / 2 - 2); // Responsive bar wid
 
 export default function BarChart({ data, height = 200, showContainer = true }: BarChartProps) {
   const { colors } = useTheme();
+  // Always call hooks first, then conditionally return
+  if (!data || data.length === 0) {
+    return (
+      <View style={[styles.container, { backgroundColor: colors.card, borderColor: colors.border, height }]}> 
+        <Text style={{ color: colors.placeholder, textAlign: 'center', marginTop: height / 2 - 20 }}>
+          No data available
+        </Text>
+      </View>
+    );
+  }
   const maxValue = Math.max(...data.flatMap(d => [d.withinPolicy, d.overPolicy]));
   const chartHeight = height - 60; // Account for labels and legend
 
