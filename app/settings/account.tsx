@@ -7,7 +7,7 @@ import {
   Switch,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Lock, Shield, Globe } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/Button';
@@ -62,13 +62,13 @@ export default function AccountSettingsScreen() {
               title="Change Password"
               onPress={handleChangePassword}
               variant="outline"
-              leftIcon={<Lock size={18} color={colors.primary} />}
+              leftIcon={<Feather name="lock" size={18} color={colors.primary} />}
               style={{ marginBottom: 20 }}
             />
             
             <View style={styles.settingRow}>
               <View style={styles.settingRowLeft}>
-                <Shield size={20} color={colors.primary} />
+                <Feather name="shield" size={20} color={colors.primary} />
                 <View style={styles.settingTextContainer}>
                   <Text style={[styles.settingRowText, { color: colors.text }]}>
                     SSO Login
@@ -103,7 +103,7 @@ export default function AccountSettingsScreen() {
           ]}>
             <View style={styles.languageContainer}>
               <View style={styles.languageHeader}>
-                <Globe size={20} color={colors.primary} />
+                <Feather name="globe" size={20} color={colors.primary} />
                 <Text style={[styles.languageTitle, { color: colors.text }]}>
                   Language
                 </Text>

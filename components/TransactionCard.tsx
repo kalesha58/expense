@@ -1,15 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { 
-  CheckCircle, 
-  Clock, 
-  AlertCircle, 
-  Wifi, 
-  WifiOff, 
-  Database,
-  Cloud,
-  ChevronRight
-} from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
 import { Transaction } from '@/constants/mockTransactionData';
@@ -25,13 +16,13 @@ export const TransactionCard = ({ transaction, onPress }: TransactionCardProps) 
   const getStatusIcon = () => {
     switch (transaction.status) {
       case 'synced':
-        return <CheckCircle size={20} color={colors.success} />;
+        return <Feather name="check-circle" size={20} color={colors.success} />;
       case 'pending':
-        return <Clock size={20} color={colors.warning} />;
+        return <Feather name="clock" size={20} color={colors.warning} />;
       case 'failed':
-        return <AlertCircle size={20} color={colors.error} />;
+        return <Feather name="alert-circle" size={20} color={colors.error} />;
       default:
-        return <Clock size={20} color={colors.placeholder} />;
+        return <Feather name="clock" size={20} color={colors.placeholder} />;
     }
   };
   
@@ -63,9 +54,9 @@ export const TransactionCard = ({ transaction, onPress }: TransactionCardProps) 
   
   const getLocalIcon = () => {
     return transaction.local ? (
-      <Database size={16} color={colors.primary} />
+      <Feather name="database" size={16} color={colors.primary} />
     ) : (
-      <Cloud size={16} color={colors.secondary} />
+      <Feather name="cloud" size={16} color={colors.secondary} />
     );
   };
   
@@ -132,21 +123,21 @@ export const TransactionCard = ({ transaction, onPress }: TransactionCardProps) 
         
         {transaction.synced ? (
           <View style={styles.syncedIndicator}>
-            <Wifi size={16} color={colors.success} />
+            <Feather name="wifi" size={16} color={colors.success} />
             <Text style={[styles.syncedText, { color: colors.success }]}>
               Online
             </Text>
           </View>
         ) : (
           <View style={styles.offlineIndicator}>
-            <WifiOff size={16} color={colors.warning} />
+            <Feather name="wifi-off" size={16} color={colors.warning} />
             <Text style={[styles.offlineText, { color: colors.warning }]}>
               Offline
             </Text>
           </View>
         )}
         
-        <ChevronRight size={16} color={colors.placeholder} />
+        <Feather name="chevron-right" size={16} color={colors.placeholder} />
       </View>
       
       {transaction.errorMessage && (
@@ -157,7 +148,7 @@ export const TransactionCard = ({ transaction, onPress }: TransactionCardProps) 
             borderColor: colors.error,
           }
         ]}>
-          <AlertCircle size={14} color={colors.error} />
+          <Feather name="alert-circle" size={14} color={colors.error} />
           <Text style={[styles.errorText, { color: colors.error }]}>
             {transaction.errorMessage}
           </Text>

@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { AlertCircle, ChevronRight, Edit2 } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useExpense } from '@/hooks/useExpense';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
@@ -93,7 +93,7 @@ export default function ReviewExpenseScreen() {
               style={styles.editButton}
               onPress={() => router.push('/expenses/create')}
             >
-              <Edit2 size={16} color={colors.primary} />
+              <Feather name="edit" size={16} color={colors.primary} />
               <Text style={[styles.editText, { color: colors.primary }]}>
                 Edit
               </Text>
@@ -155,7 +155,7 @@ export default function ReviewExpenseScreen() {
               style={styles.editButton}
               onPress={() => router.push('/expenses/add-line-item')}
             >
-              <Edit2 size={16} color={colors.primary} />
+              <Feather name="plus-circle" size={16} color={colors.primary} />
               <Text style={[styles.editText, { color: colors.primary }]}>
                 Add More
               </Text>
@@ -259,7 +259,7 @@ export default function ReviewExpenseScreen() {
           backgroundColor: colors.warning + '15',
           borderColor: colors.warning,
         }]}>
-          <AlertCircle size={20} color={colors.warning} />
+          <Feather name="alert-circle" size={20} color={colors.warning} />
           <Text style={[styles.policyText, { color: colors.text }]}>
             Please review all expense details before submitting. Once submitted, the report will be sent for approval.
           </Text>

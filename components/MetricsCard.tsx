@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { DollarSign, CheckCircle, AlertTriangle } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
@@ -20,21 +20,21 @@ export default function MetricsCard({ metrics }: MetricsCardProps) {
     {
       title: 'Total Submitted',
       value: formatCurrency(metrics.totalSubmitted),
-      icon: DollarSign,
+      icon: 'dollar-sign',
       color: colors.primary,
       bgColor: colors.primary + '15',
     },
     {
       title: 'Total Approved',
       value: formatCurrency(metrics.totalApproved),
-      icon: CheckCircle,
+      icon: 'check-circle',
       color: colors.success,
       bgColor: colors.success + '15',
     },
     {
       title: 'Policy Violations',
       value: metrics.policyViolations.toString(),
-      icon: AlertTriangle,
+      icon: 'alert-triangle',
       color: colors.warning,
       bgColor: colors.warning + '15',
     },
@@ -47,7 +47,7 @@ export default function MetricsCard({ metrics }: MetricsCardProps) {
         return (
           <View key={metric.title} style={[styles.metricCard, { backgroundColor: colors.card, borderColor: colors.border }]}>
             <View style={[styles.iconContainer, { backgroundColor: metric.bgColor }]}>
-              <IconComponent size={24} color={metric.color} />
+              <Feather name={IconComponent as any} size={24} color={metric.color} />
             </View>
             <Text style={[styles.metricTitle, { color: metric.color }]}>{metric.title}</Text>
             <Text style={[styles.metricValue, { color: metric.color }]}>

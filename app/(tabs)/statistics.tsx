@@ -1,23 +1,7 @@
 import React, { useState, useMemo } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity, Dimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  TrendingUp, 
-  TrendingDown, 
-  DollarSign, 
-  CheckCircle, 
-  AlertCircle, 
-  Calendar,
-  BarChart3,
-  PieChart,
-  Activity,
-  ArrowUpRight,
-  ArrowDownRight,
-  Target,
-  Zap,
-  Shield,
-  Clock
-} from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 
 import { 
   WEEKLY_DATA, 
@@ -112,10 +96,10 @@ export default function StatisticsScreen() {
           ]}>
             <View style={styles.metricHeader}>
               <View style={[styles.metricIcon, { backgroundColor: colors.primary + '15' }]}>
-                <DollarSign size={20} color={colors.primary} />
+                <Feather name="dollar-sign" size={20} color={colors.primary} />
               </View>
               <View style={[styles.changeIndicator, { backgroundColor: colors.success + '15' }]}>
-                <ArrowUpRight size={14} color={colors.success} />
+                <Feather name="arrow-up-right" size={14} color={colors.success} />
                 <Text style={[styles.changeText, { color: colors.success }]}>
                   +{spendingChange}%
                 </Text>
@@ -136,10 +120,10 @@ export default function StatisticsScreen() {
           ]}>
             <View style={styles.metricHeader}>
               <View style={[styles.metricIcon, { backgroundColor: colors.success + '15' }]}>
-                <CheckCircle size={20} color={colors.success} />
+                <Feather name="check-circle" size={20} color={colors.success} />
               </View>
               <View style={[styles.changeIndicator, { backgroundColor: colors.success + '15' }]}>
-                <ArrowUpRight size={14} color={colors.success} />
+                <Feather name="arrow-up-right" size={14} color={colors.success} />
                 <Text style={[styles.changeText, { color: colors.success }]}>
                   +{complianceData.complianceRate}%
                 </Text>
@@ -160,10 +144,10 @@ export default function StatisticsScreen() {
           ]}>
             <View style={styles.metricHeader}>
               <View style={[styles.metricIcon, { backgroundColor: colors.warning + '15' }]}>
-                <Clock size={20} color={colors.warning} />
+                <Feather name="clock" size={20} color={colors.warning} />
               </View>
               <View style={[styles.changeIndicator, { backgroundColor: colors.warning + '15' }]}>
-                <ArrowDownRight size={14} color={colors.warning} />
+                <Feather name="arrow-down-right" size={14} color={colors.warning} />
                 <Text style={[styles.changeText, { color: colors.warning }]}>
                   -5.2%
                 </Text>
@@ -186,7 +170,7 @@ export default function StatisticsScreen() {
         ]}>
           <View style={styles.complianceHeader}>
             <View style={styles.complianceTitleSection}>
-              <Shield size={24} color={colors.primary} />
+              <Feather name="shield" size={24} color={colors.primary} />
               <Text style={[styles.complianceTitle, { color: colors.text }]}>
                 {t('statistics.policyCompliance', 'Policy Compliance')}
               </Text>
@@ -260,7 +244,7 @@ export default function StatisticsScreen() {
         ]}>
           <View style={styles.chartHeader}>
             <View style={styles.chartTitleSection}>
-              <BarChart3 size={20} color={colors.primary} />
+              <Feather name="bar-chart-2" size={20} color={colors.primary} />
               <Text style={[styles.chartTitle, { color: colors.text }]}>
                 {t('statistics.spendingTrends', 'Spending Trends')}
               </Text>
@@ -269,7 +253,7 @@ export default function StatisticsScreen() {
               <Text style={[styles.chartActionText, { color: colors.primary }]}>
                 {t('statistics.viewDetails', 'View Details')}
               </Text>
-              <ArrowUpRight size={14} color={colors.primary} />
+              <Feather name="arrow-up-right" size={14} color={colors.primary} />
             </TouchableOpacity>
           </View>
           <View style={styles.chartContent}>
@@ -295,7 +279,7 @@ export default function StatisticsScreen() {
               shadows.small
             ]}>
               <View style={[styles.insightIcon, { backgroundColor: colors.success + '15' }]}>
-                <TrendingUp size={20} color={colors.success} />
+                <Feather name="trending-up" size={20} color={colors.success} />
               </View>
               <Text style={[styles.insightTitle, { color: colors.text }]}>
                 {t('statistics.spendingIncrease', 'Spending Increase')}
@@ -311,7 +295,7 @@ export default function StatisticsScreen() {
               shadows.small
             ]}>
               <View style={[styles.insightIcon, { backgroundColor: colors.warning + '15' }]}>
-                <AlertCircle size={20} color={colors.warning} />
+                <Feather name="alert-circle" size={20} color={colors.warning} />
               </View>
               <Text style={[styles.insightTitle, { color: colors.text }]}>
                 {t('statistics.policyViolations', 'Policy Violations')}

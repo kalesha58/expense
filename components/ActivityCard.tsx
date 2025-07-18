@@ -1,4 +1,4 @@
-import { CheckCircle, ChevronDown, ChevronUp, XCircle } from "lucide-react-native";
+import { Feather } from '@expo/vector-icons';
 import React, { useEffect, useState } from "react";
 import { ActivityIndicator, Pressable, StyleSheet, Text, View } from "react-native";
 import Animated, { 
@@ -76,9 +76,9 @@ export default function ActivityCard({ apiInfo, state, index, onRetry }: Activit
       case "loading":
         return <ActivityIndicator size="small" color={colors.primary} />;
       case "success":
-        return <CheckCircle size={24} color={colors.success} />;
+        return <Feather name="check-circle" size={24} color={colors.success} />;
       case "error":
-        return <XCircle size={24} color={colors.error} />;
+        return <Feather name="x-circle" size={24} color={colors.error} />;
       default:
         return null;
     }
@@ -102,9 +102,9 @@ export default function ActivityCard({ apiInfo, state, index, onRetry }: Activit
             <Pressable onPress={toggleExpanded} style={styles.errorToggle}>
               <Text style={[styles.errorText, { color: colors.error }]}>Error details</Text>
               {expanded ? (
-                <ChevronUp size={16} color={colors.error} />
+                <Feather name="chevron-up" size={16} color={colors.error} />
               ) : (
-                <ChevronDown size={16} color={colors.error} />
+                <Feather name="chevron-down" size={16} color={colors.error} />
               )}
             </Pressable>
             <Animated.View style={[styles.errorDetails, errorAnimatedStyle]}>

@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Platform } from 'react-native';
 import { useRouter } from 'expo-router';
-import { ArrowLeft, Moon, Sun } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
 
@@ -46,7 +46,7 @@ export const Header = ({
               onPress={handleBack}
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
-              <ArrowLeft size={24} color={colors.primary} />
+              <Feather name="arrow-left" size={24} color={colors.primary} />
             </TouchableOpacity>
           )}
         </View>
@@ -63,9 +63,9 @@ export const Header = ({
               hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
             >
               {isDark ? (
-                <Sun size={24} color={colors.primary} />
+                <Feather name="sun" size={24} color={colors.primary} />
               ) : (
-                <Moon size={24} color={colors.primary} />
+                <Feather name="moon" size={24} color={colors.primary} />
               )}
             </TouchableOpacity>
           )}

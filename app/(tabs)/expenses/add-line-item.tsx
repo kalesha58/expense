@@ -10,7 +10,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { Camera, Upload, X } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useExpense } from '@/hooks/useExpense';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
@@ -240,7 +240,7 @@ export default function AddLineItemScreen() {
                 style={[styles.removeButton, { backgroundColor: colors.error }]}
                 onPress={handleRemoveReceipt}
               >
-                <X size={16} color="#FFFFFF" />
+                <Feather name="x" size={16} color="#FFFFFF" />
               </TouchableOpacity>
             </View>
           ) : (
@@ -249,14 +249,14 @@ export default function AddLineItemScreen() {
                 title="Take Photo"
                 onPress={handleUploadReceipt}
                 variant="outline"
-                leftIcon={<Camera size={18} color={colors.primary} />}
+                leftIcon={<Feather name="camera" size={18} color={colors.primary} />}
                 style={styles.uploadButton}
               />
               <Button
                 title="Upload Receipt"
                 onPress={handleUploadReceipt}
                 variant="outline"
-                leftIcon={<Upload size={18} color={colors.primary} />}
+                leftIcon={<Feather name="upload" size={18} color={colors.primary} />}
                 style={styles.uploadButton}
               />
             </View>

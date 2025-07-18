@@ -57,7 +57,7 @@ export default function CreateExpenseScreen() {
       setIsLoading(true);
       await saveAsDraft();
       Alert.alert('Success', 'Expense report saved as draft');
-      router.push('/expenses');
+      router.back();
     } catch (error) {
       Alert.alert('Error', 'Failed to save expense report');
     } finally {

@@ -9,21 +9,8 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { 
-  PlusCircle, 
-  Search, 
-  Filter, 
-  CheckCircle, 
-  Clock, 
-  AlertCircle,
-  ChevronRight,
-  DollarSign,
-  Calendar,
-  FileText,
-  TrendingUp,
-  ArrowRight,
-  MoreHorizontal
-} from 'lucide-react-native';
+
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
 import { Input } from '@/components/ui/Input';
@@ -133,11 +120,11 @@ export default function ExpensesListScreen() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'approved':
-        return <CheckCircle size={16} color={colors.success} />;
+        return <Feather name="check-circle" size={16} color={colors.success} />;
       case 'pending':
-        return <Clock size={16} color={colors.warning} />;
+        return <Feather name="clock" size={16} color={colors.warning} />;
       case 'rejected':
-        return <AlertCircle size={16} color={colors.error} />;
+        return <Feather name="alert-circle" size={16} color={colors.error} />;
       default:
         return null;
     }
@@ -194,14 +181,14 @@ export default function ExpensesListScreen() {
           </View>
         </View>
         <TouchableOpacity style={styles.moreButton}>
-          <MoreHorizontal size={20} color={colors.placeholder} />
+          <Feather name="more-horizontal" size={20} color={colors.placeholder} />
         </TouchableOpacity>
       </View>
       
       <View style={styles.expenseContent}>
         <View style={styles.expenseMainInfo}>
           <View style={styles.amountSection}>
-            <DollarSign size={16} color={colors.primary} />
+            <Feather name="dollar-sign" size={16} color={colors.primary} />
             <Text style={[styles.expenseAmount, { color: colors.text }]}>
               ${item.amount.toFixed(2)}
             </Text>
@@ -209,14 +196,14 @@ export default function ExpensesListScreen() {
           
           <View style={styles.expenseDetails}>
             <View style={styles.detailItem}>
-              <Calendar size={14} color={colors.placeholder} />
+              <Feather name="calendar" size={14} color={colors.placeholder} />
               <Text style={[styles.detailText, { color: colors.placeholder }]}>
                 {new Date(item.date).toLocaleDateString()}
               </Text>
             </View>
             
             <View style={styles.detailItem}>
-              <FileText size={14} color={colors.placeholder} />
+              <Feather name="file-text" size={14} color={colors.placeholder} />
               <Text style={[styles.detailText, { color: colors.placeholder }]}>
                 {item.items} {item.items === 1 ? 'item' : 'items'}
               </Text>
@@ -240,7 +227,7 @@ export default function ExpensesListScreen() {
             </Text>
           </View>
           
-          <ArrowRight size={16} color={colors.placeholder} />
+          <Feather name="arrow-right" size={16} color={colors.placeholder} />
         </View>
       </View>
     </TouchableOpacity>
@@ -261,7 +248,7 @@ export default function ExpensesListScreen() {
           shadows.small
         ]}>
           <View style={[styles.statIcon, { backgroundColor: colors.primary + '15' }]}>
-            <DollarSign size={20} color={colors.primary} />
+            <Feather name="dollar-sign" size={20} color={colors.primary} />
           </View>
           <View style={styles.statContent}>
             <Text style={[styles.statValue, { color: colors.text }]}>
@@ -279,7 +266,7 @@ export default function ExpensesListScreen() {
           shadows.small
         ]}>
           <View style={[styles.statIcon, { backgroundColor: colors.success + '15' }]}>
-            <CheckCircle size={20} color={colors.success} />
+            <Feather name="check-circle" size={20} color={colors.success} />
           </View>
           <View style={styles.statContent}>
             <Text style={[styles.statValue, { color: colors.text }]}>
@@ -297,7 +284,7 @@ export default function ExpensesListScreen() {
           shadows.small
         ]}>
           <View style={[styles.statIcon, { backgroundColor: colors.warning + '15' }]}>
-            <Clock size={20} color={colors.warning} />
+            <Feather name="clock" size={20} color={colors.warning} />
           </View>
           <View style={styles.statContent}>
             <Text style={[styles.statValue, { color: colors.text }]}>
@@ -316,7 +303,7 @@ export default function ExpensesListScreen() {
           styles.searchInput,
           { backgroundColor: colors.card, borderColor: colors.border }
         ]}>
-          <Search size={20} color={colors.placeholder} />
+          <Feather name="search" size={20} color={colors.placeholder} />
           <Input
             placeholder={t('expenses.searchPlaceholder', 'Search expenses...')}
             value={searchQuery}
@@ -332,7 +319,7 @@ export default function ExpensesListScreen() {
             { backgroundColor: colors.card, borderColor: colors.border }
           ]}
         >
-          <Filter size={20} color={colors.primary} />
+          <Feather name="filter" size={20} color={colors.primary} />
         </TouchableOpacity>
       </View>
       
@@ -390,7 +377,7 @@ export default function ExpensesListScreen() {
         ListEmptyComponent={
           <View style={styles.emptyContainer}>
             <View style={[styles.emptyIcon, { backgroundColor: colors.primary + '15' }]}>
-              <FileText size={48} color={colors.primary} />
+              <Feather name="file-text" size={48} color={colors.primary} />
             </View>
             <Text style={[styles.emptyTitle, { color: colors.text }]}>
               {t('expenses.noExpensesTitle', 'No expenses found')}
@@ -407,7 +394,7 @@ export default function ExpensesListScreen() {
           style={[styles.fab, { backgroundColor: colors.primary }]}
           onPress={handleCreateExpense}
         >
-          <PlusCircle size={24} color="#FFFFFF" />
+          <Feather name="plus-circle" size={24} color="#FFFFFF" />
         </TouchableOpacity>
       </View>
     </SafeAreaView>

@@ -1,6 +1,6 @@
 import { Tabs } from "expo-router";
 import React from "react";
-import { Home, FileText, Settings, BarChart3 } from "lucide-react-native";
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from "@/hooks/useTheme";
 
 export default function TabLayout() {
@@ -26,28 +26,28 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Dashboard",
-          tabBarIcon: ({ color, size }) => <Home size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Feather name="home" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="expenses"
         options={{
           title: "Expenses",
-          tabBarIcon: ({ color, size }) => <FileText size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Feather name="file-text" size={size} color={color} />,
         }}
       />
       <Tabs.Screen
         name="statistics"
         options={{
           title: "Statistics",
-          tabBarIcon: ({ color }) => <BarChart3 size={24} color={color} />,
+          tabBarIcon: ({ color }) => <Feather name="bar-chart-2" size={24} color={color} />,
         }}
       />
       <Tabs.Screen
         name="settings"
         options={{
           title: "Settings",
-          tabBarIcon: ({ color, size }) => <Settings size={size} color={color} />,
+          tabBarIcon: ({ color, size }) => <Feather name="settings" size={size} color={color} />,
         }}
       />
     </Tabs>

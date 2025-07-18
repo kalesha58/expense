@@ -15,7 +15,7 @@ import {
 import { useTheme } from '@/hooks/useTheme';
 import { useAuth } from '@/hooks/useAuth';
 import { SIZES } from '@/constants/theme';
-import { Lock, User, Eye, EyeOff, Moon, Sun, AlertCircle, X } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
 const VERSION = 'ExpenseApp v1.0.0';
@@ -66,9 +66,9 @@ export default function LoginScreen() {
           <View style={styles.themeToggleContainer}>
             <TouchableOpacity onPress={toggleTheme} style={styles.themeToggleBtn}>
               {isDark ? (
-                <Sun size={24} color={colors.primary} />
+                <Feather name="sun" size={24} color={colors.primary} />
               ) : (
-                <Moon size={24} color={colors.primary} />
+                <Feather name="moon" size={24} color={colors.primary} />
               )}
             </TouchableOpacity>
           </View>
@@ -91,10 +91,10 @@ export default function LoginScreen() {
                 backgroundColor: isDark ? '#2D1B1B' : '#FFE5E5', 
                 borderLeftColor: colors.expense 
               }]}>
-                <AlertCircle size={20} color={colors.expense} />
+                <Feather name="alert-circle" size={20} color={colors.expense} />
                 <Text style={[styles.errorText, { color: colors.text }]}>{error}</Text>
                 <TouchableOpacity onPress={() => setError("")}>
-                  <X size={20} color={colors.textLight} />
+                  <Feather name="x" size={20} color={colors.textLight} />
                 </TouchableOpacity>
               </View>
             ) : null}
@@ -134,9 +134,9 @@ export default function LoginScreen() {
                 hitSlop={{ top: 10, bottom: 10, left: 10, right: 10 }}
               >
                 {showPassword ? (
-                  <EyeOff size={22} color={colors.placeholder} />
+                  <Feather name="eye-off" size={22} color={colors.placeholder} />
                 ) : (
-                  <Eye size={22} color={colors.placeholder} />
+                  <Feather name="eye" size={22} color={colors.placeholder} />
                 )}
               </TouchableOpacity>
             </View>

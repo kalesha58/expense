@@ -6,7 +6,7 @@ import {
   SafeAreaView,
 } from 'react-native';
 import { useRouter } from 'expo-router';
-import { CheckCircle } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { Button } from '@/components/ui/Button';
 import { SIZES } from '@/constants/theme';
@@ -32,7 +32,7 @@ export default function ConfirmationScreen() {
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
       <View style={styles.content}>
         <View style={[styles.iconContainer, { backgroundColor: colors.success + '20' }]}>
-          <CheckCircle size={64} color={colors.success} />
+          <Feather name="check-circle" size={64} color={colors.success} />
         </View>
         
         <Text style={[styles.title, { color: colors.text }]}>

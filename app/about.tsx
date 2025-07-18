@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { StyleSheet, Text, View, ScrollView, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { Info, HelpCircle, ChevronDown, ChevronUp, Building2, Shield, Zap } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
 import { SIZES } from '@/constants/theme';
@@ -59,13 +59,13 @@ function FaqAccordion({ item, isExpanded, onToggle, colors }: FaqAccordionProps)
     <View style={[styles.faqItem, { borderBottomColor: colors.border }]}>
       <TouchableOpacity style={styles.faqHeader} onPress={onToggle}>
         <View style={styles.faqQuestionContainer}>
-          <HelpCircle size={20} color={colors.primary} style={styles.faqIcon} />
+          <Feather name="help-circle" size={20} color={colors.primary} style={styles.faqIcon} />
           <Text style={[styles.faqQuestion, { color: colors.text }]}>{item.question}</Text>
         </View>
         {isExpanded ? (
-          <ChevronUp size={20} color={colors.placeholder} />
+          <Feather name="chevron-up" size={20} color={colors.placeholder} />
         ) : (
-          <ChevronDown size={20} color={colors.placeholder} />
+          <Feather name="chevron-down" size={20} color={colors.placeholder} />
         )}
       </TouchableOpacity>
       
@@ -89,17 +89,17 @@ export default function AboutScreen() {
 
   const features = [
     {
-      icon: Zap,
+      icon: Feather.name.zap,
       title: 'Real-time Sync',
       description: 'Instant synchronization with Oracle EBS backend systems',
     },
     {
-      icon: Shield,
+      icon: Feather.name.shield,
       title: 'Policy Compliance',
       description: 'Automated policy validation and compliance checking',
     },
     {
-      icon: Building2,
+      icon: Feather.name.building,
       title: 'Enterprise Ready',
       description: 'Built for large-scale enterprise expense management',
     },
@@ -127,7 +127,7 @@ export default function AboutScreen() {
           shadows.medium
         ]}>
           <View style={styles.titleContainer}>
-            <Info size={32} color={colors.primary} />
+            <Feather name="info" size={32} color={colors.primary} />
             <Text style={[styles.title, { color: colors.text }]}>
               {t('about.appTitle', 'Oracle iExpense')}
             </Text>
@@ -153,7 +153,7 @@ export default function AboutScreen() {
             {t('about.keyFeatures', 'Key Features')}
           </Text>
           {features.map((feature, index) => {
-            const IconComponent = feature.icon;
+            const IconComponent = Feather;
             return (
               <View 
                 key={index} 
@@ -167,7 +167,7 @@ export default function AboutScreen() {
                 ]}
               >
                 <View style={[styles.featureIconContainer, { backgroundColor: colors.primary + '15' }]}>
-                  <IconComponent size={24} color={colors.primary} />
+                  <IconComponent name={feature.icon} size={24} color={colors.primary} />
                 </View>
                 <View style={styles.featureContent}>
                   <Text style={[styles.featureTitle, { color: colors.text }]}>{feature.title}</Text>

@@ -10,7 +10,7 @@ import {
   TextStyle,
   StyleProp,
 } from 'react-native';
-import { ChevronDown, Check } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
 
@@ -99,7 +99,7 @@ export const Dropdown = ({
         >
           {selectedOption ? selectedOption.label : placeholder}
         </Text>
-        <ChevronDown size={20} color={colors.placeholder} />
+        <Feather name="chevron-down" size={20} color={colors.placeholder} />
       </TouchableOpacity>
       
       {error && (
@@ -149,7 +149,7 @@ export const Dropdown = ({
                     {item.label}
                   </Text>
                   {item.value === value && (
-                    <Check size={20} color={colors.primary} />
+                    <Feather name="check" size={20} color={colors.primary} />
                   )}
                 </TouchableOpacity>
               )}

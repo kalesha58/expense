@@ -9,21 +9,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { 
-  PlusCircle, 
-  FileText, 
-  Clock, 
-  CheckCircle, 
-  AlertCircle, 
-  History,
-  TrendingUp,
-  DollarSign,
-  Calendar,
-  ArrowRight,
-  Zap,
-  Shield,
-  Building2
-} from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
@@ -64,11 +50,11 @@ export default function DashboardScreen() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'approved':
-        return <CheckCircle size={16} color={colors.success} />;
+        return <Feather name="check-circle" size={16} color={colors.success} />;
       case 'pending':
-        return <Clock size={16} color={colors.warning} />;
+        return <Feather name="clock" size={16} color={colors.warning} />;
       case 'rejected':
-        return <AlertCircle size={16} color={colors.error} />;
+        return <Feather name="alert-circle" size={16} color={colors.error} />;
       default:
         return null;
     }
@@ -113,7 +99,7 @@ export default function DashboardScreen() {
             </Text>
           </View>
           <View style={[styles.welcomeIcon, { backgroundColor: colors.primary + '15' }]}>
-            <Building2 size={24} color={colors.primary} />
+            <Feather name="home" size={24} color={colors.primary} />
           </View>
         </View>
         
@@ -130,7 +116,7 @@ export default function DashboardScreen() {
           >
             <View style={styles.moduleHeader}>
               <View style={[styles.moduleIcon, { backgroundColor: colors.primary + '15' }]}>
-                <PlusCircle size={24} color={colors.primary} />
+                <Feather name="plus-circle" size={24} color={colors.primary} />
               </View>
               <View style={styles.moduleBadge}>
                 <Text style={[styles.moduleBadgeText, { color: colors.primary }]}>
@@ -152,7 +138,7 @@ export default function DashboardScreen() {
               <Text style={[styles.moduleStatValue, { color: colors.text }]}>
                 5 min
               </Text>
-              <ArrowRight size={16} color={colors.primary} />
+              <Feather name="arrow-right" size={16} color={colors.primary} />
             </View>
           </TouchableOpacity>
           
@@ -167,7 +153,7 @@ export default function DashboardScreen() {
           >
             <View style={styles.moduleHeader}>
               <View style={[styles.moduleIcon, { backgroundColor: colors.secondary + '15' }]}>
-                <FileText size={24} color={colors.secondary} />
+                <Feather name="file-text" size={24} color={colors.secondary} />
               </View>
               <View style={[styles.moduleBadge, { backgroundColor: colors.warning + '15' }]}>
                 <Text style={[styles.moduleBadgeText, { color: colors.warning }]}>
@@ -189,7 +175,7 @@ export default function DashboardScreen() {
               <Text style={[styles.moduleStatValue, { color: colors.text }]}>
                 3 pending
               </Text>
-              <ArrowRight size={16} color={colors.secondary} />
+              <Feather name="arrow-right" size={16} color={colors.secondary} />
             </View>
           </TouchableOpacity>
           
@@ -204,7 +190,7 @@ export default function DashboardScreen() {
           >
             <View style={styles.moduleHeader}>
               <View style={[styles.moduleIcon, { backgroundColor: colors.success + '15' }]}>
-                <History size={24} color={colors.success} />
+                <Feather name="activity" size={24} color={colors.success} />
               </View>
               <View style={[styles.moduleBadge, { backgroundColor: colors.success + '15' }]}>
                 <Text style={[styles.moduleBadgeText, { color: colors.success }]}>
@@ -226,7 +212,7 @@ export default function DashboardScreen() {
               <Text style={[styles.moduleStatValue, { color: colors.text }]}>
                 284 total
               </Text>
-              <ArrowRight size={16} color={colors.success} />
+              <Feather name="arrow-right" size={16} color={colors.success} />
             </View>
           </TouchableOpacity>
         </View>
@@ -244,7 +230,7 @@ export default function DashboardScreen() {
               <Text style={[styles.viewAllText, { color: colors.primary }]}>
                 {t('dashboard.viewAll', 'View All')}
               </Text>
-              <ArrowRight size={16} color={colors.primary} />
+              <Feather name="arrow-right" size={16} color={colors.primary} />
             </TouchableOpacity>
           </View>
           
@@ -283,7 +269,7 @@ export default function DashboardScreen() {
                   <Text style={[styles.expenseAmount, { color: colors.text }]}>
                     ${expense.amount.toFixed(2)}
                   </Text>
-                  <ArrowRight size={16} color={colors.placeholder} />
+                  <Feather name="arrow-right" size={16} color={colors.placeholder} />
                 </View>
               </View>
             </TouchableOpacity>

@@ -11,7 +11,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useLocalSearchParams, useRouter } from 'expo-router';
-import { CheckCircle, Clock, AlertCircle, Download, Share2, HelpCircle, FileText, Calendar, Building, DollarSign } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
 import { Button } from '@/components/ui/Button';
@@ -189,11 +189,11 @@ export default function ExpenseDetailsScreen() {
   const getStatusIcon = (status: string) => {
     switch (status) {
       case 'approved':
-        return <CheckCircle size={20} color={colors.success} />;
+        return <Feather name="check-circle" size={20} color={colors.success} />;
       case 'pending':
-        return <Clock size={20} color={colors.warning} />;
+        return <Feather name="clock" size={20} color={colors.warning} />;
       case 'rejected':
-        return <AlertCircle size={20} color={colors.error} />;
+        return <Feather name="alert-circle" size={20} color={colors.error} />;
       default:
         return null;
     }
@@ -238,7 +238,7 @@ export default function ExpenseDetailsScreen() {
         showThemeToggle={true}
         rightComponent={
           <TouchableOpacity style={styles.shareButton}>
-            <Share2 size={20} color={colors.primary} />
+            <Feather name="share-2" size={20} color={colors.primary} />
           </TouchableOpacity>
         }
       />
@@ -290,7 +290,7 @@ export default function ExpenseDetailsScreen() {
           <View style={styles.detailsGrid}>
             <View style={styles.detailItem}>
               <View style={styles.detailIcon}>
-                <FileText size={16} color={colors.primary} />
+                <Feather name="file-text" size={16} color={colors.primary} />
               </View>
               <View style={styles.detailContent}>
                 <Text style={[styles.detailLabel, { color: colors.placeholder }]}>
@@ -304,7 +304,7 @@ export default function ExpenseDetailsScreen() {
             
             <View style={styles.detailItem}>
               <View style={styles.detailIcon}>
-                <Calendar size={16} color={colors.primary} />
+                <Feather name="calendar" size={16} color={colors.primary} />
               </View>
               <View style={styles.detailContent}>
                 <Text style={[styles.detailLabel, { color: colors.placeholder }]}>
@@ -318,7 +318,7 @@ export default function ExpenseDetailsScreen() {
             
             <View style={styles.detailItem}>
               <View style={styles.detailIcon}>
-                <DollarSign size={16} color={colors.primary} />
+                <Feather name="dollar-sign" size={16} color={colors.primary} />
               </View>
               <View style={styles.detailContent}>
                 <Text style={[styles.detailLabel, { color: colors.placeholder }]}>
@@ -332,7 +332,7 @@ export default function ExpenseDetailsScreen() {
             
             <View style={styles.detailItem}>
               <View style={styles.detailIcon}>
-                <Building size={16} color={colors.primary} />
+                <Feather name="building" size={16} color={colors.primary} />
               </View>
               <View style={styles.detailContent}>
                 <Text style={[styles.detailLabel, { color: colors.placeholder }]}>
@@ -361,7 +361,7 @@ export default function ExpenseDetailsScreen() {
                 borderColor: colors.error,
               }
             ]}>
-              <AlertCircle size={16} color={colors.error} />
+              <Feather name="alert-circle" size={16} color={colors.error} />
               <Text style={[styles.rejectionText, { color: colors.error }]}>
                 {expense.rejectionReason}
               </Text>
@@ -456,7 +456,7 @@ export default function ExpenseDetailsScreen() {
                       ]}
                       onPress={() => handleDownloadReceipt(item.receipt)}
                     >
-                      <Download size={16} color="#FFFFFF" />
+                      <Feather name="download" size={16} color="#FFFFFF" />
                       <Text style={styles.downloadText}>{t('expenseDetails.download', 'Download')}</Text>
                     </TouchableOpacity>
                   </View>
@@ -497,7 +497,7 @@ export default function ExpenseDetailsScreen() {
             <Button
               title={t('expenseDetails.downloadReport', 'Download Report')}
               onPress={() => {}}
-              leftIcon={<Download size={18} color="#FFFFFF" />}
+              leftIcon={<Feather name="download" size={18} color="#FFFFFF" />}
               style={{ flex: 1 }}
             />
           )}
@@ -513,7 +513,7 @@ export default function ExpenseDetailsScreen() {
           shadows.small
         ]}>
           <View style={styles.helpHeader}>
-            <HelpCircle size={20} color={colors.primary} />
+            <Feather name="help-circle" size={20} color={colors.primary} />
             <Text style={[styles.helpTitle, { color: colors.text }]}>
               {t('expenseDetails.helpTitle', 'Need Help?')}
             </Text>

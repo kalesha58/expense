@@ -10,7 +10,7 @@ import {
   StyleProp,
   TextInputProps,
 } from 'react-native';
-import { Eye, EyeOff } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
 
@@ -89,9 +89,9 @@ export const Input = ({
             onPress={togglePasswordVisibility}
           >
             {isPasswordVisible ? (
-              <EyeOff size={20} color={colors.placeholder} />
+              <Feather name="eye-off" size={20} color={colors.placeholder} />
             ) : (
-              <Eye size={20} color={colors.placeholder} />
+              <Feather name="eye" size={20} color={colors.placeholder} />
             )}
           </TouchableOpacity>
         )}

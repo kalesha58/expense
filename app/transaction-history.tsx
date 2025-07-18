@@ -12,26 +12,7 @@ import {
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useRouter } from 'expo-router';
-import { 
-  RefreshCw, 
-  Filter, 
-  Search, 
-  TrendingUp, 
-  Clock, 
-  CheckCircle, 
-  AlertCircle,
-  ArrowUpRight,
-  ArrowDownRight,
-  DollarSign,
-  Calendar,
-  Activity,
-  Shield,
-  Zap,
-  History,
-  Download,
-  Upload,
-  Eye
-} from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
 import { TransactionCard } from '@/components/TransactionCard';
@@ -129,7 +110,8 @@ export default function TransactionHistoryScreen() {
             onPress={handleSync}
             disabled={isSyncing}
           >
-            <RefreshCw 
+            <Feather 
+              name="refresh-cw" 
               size={20} 
               color="#FFFFFF" 
               style={isSyncing ? { transform: [{ rotate: '180deg' }] } : {}}
@@ -170,10 +152,10 @@ export default function TransactionHistoryScreen() {
           ]}>
             <View style={styles.metricHeader}>
               <View style={[styles.metricIcon, { backgroundColor: colors.success + '15' }]}>
-                <CheckCircle size={20} color={colors.success} />
+                <Feather name="check-circle" size={20} color={colors.success} />
               </View>
               <View style={[styles.changeIndicator, { backgroundColor: colors.success + '15' }]}>
-                <ArrowUpRight size={14} color={colors.success} />
+                <Feather name="arrow-up-right" size={14} color={colors.success} />
                 <Text style={[styles.changeText, { color: colors.success }]}>
                   +{transactions.filter(t => t.status === 'synced').length}
                 </Text>
@@ -194,10 +176,10 @@ export default function TransactionHistoryScreen() {
           ]}>
             <View style={styles.metricHeader}>
               <View style={[styles.metricIcon, { backgroundColor: colors.warning + '15' }]}>
-                <Clock size={20} color={colors.warning} />
+                <Feather name="clock" size={20} color={colors.warning} />
               </View>
               <View style={[styles.changeIndicator, { backgroundColor: colors.warning + '15' }]}>
-                <ArrowDownRight size={14} color={colors.warning} />
+                <Feather name="arrow-down-right" size={14} color={colors.warning} />
                 <Text style={[styles.changeText, { color: colors.warning }]}>
                   {transactions.filter(t => t.status === 'pending').length}
                 </Text>
@@ -218,10 +200,10 @@ export default function TransactionHistoryScreen() {
           ]}>
             <View style={styles.metricHeader}>
               <View style={[styles.metricIcon, { backgroundColor: colors.error + '15' }]}>
-                <AlertCircle size={20} color={colors.error} />
+                <Feather name="alert-circle" size={20} color={colors.error} />
               </View>
               <View style={[styles.changeIndicator, { backgroundColor: colors.error + '15' }]}>
-                <ArrowDownRight size={14} color={colors.error} />
+                <Feather name="arrow-down-right" size={14} color={colors.error} />
                 <Text style={[styles.changeText, { color: colors.error }]}>
                   {transactions.filter(t => t.status === 'failed').length}
                 </Text>
@@ -244,7 +226,7 @@ export default function TransactionHistoryScreen() {
         ]}>
           <View style={styles.syncStatusHeader}>
             <View style={styles.syncStatusTitleSection}>
-              <Shield size={24} color={colors.primary} />
+              <Feather name="shield" size={24} color={colors.primary} />
               <Text style={[styles.syncStatusTitle, { color: colors.text }]}>
                 {t('transactionHistory.syncStatus', 'Sync Status')}
               </Text>
@@ -332,7 +314,7 @@ export default function TransactionHistoryScreen() {
           ) : (
             <View style={styles.emptyContainer}>
               <View style={[styles.emptyIcon, { backgroundColor: colors.placeholder + '15' }]}>
-                <History size={48} color={colors.placeholder} />
+                <Feather name="clock" size={48} color={colors.placeholder} />
               </View>
               <Text style={[styles.emptyText, { color: colors.text }]}>
                 {t('transactionHistory.noTransactions', 'No transactions found')}
@@ -357,7 +339,7 @@ export default function TransactionHistoryScreen() {
               shadows.small
             ]}>
               <View style={[styles.quickActionIcon, { backgroundColor: colors.primary + '15' }]}>
-                <Download size={20} color={colors.primary} />
+                <Feather name="download" size={20} color={colors.primary} />
               </View>
               <Text style={[styles.quickActionTitle, { color: colors.text }]}>
                 {t('transactionHistory.exportData', 'Export Data')}
@@ -373,7 +355,7 @@ export default function TransactionHistoryScreen() {
               shadows.small
             ]}>
               <View style={[styles.quickActionIcon, { backgroundColor: colors.success + '15' }]}>
-                <Upload size={20} color={colors.success} />
+                <Feather name="upload" size={20} color={colors.success} />
               </View>
               <Text style={[styles.quickActionTitle, { color: colors.text }]}>
                 {t('transactionHistory.importData', 'Import Data')}
@@ -389,7 +371,7 @@ export default function TransactionHistoryScreen() {
               shadows.small
             ]}>
               <View style={[styles.quickActionIcon, { backgroundColor: colors.warning + '15' }]}>
-                <Eye size={20} color={colors.warning} />
+                <Feather name="eye" size={20} color={colors.warning} />
               </View>
               <Text style={[styles.quickActionTitle, { color: colors.text }]}>
                 {t('transactionHistory.viewAnalytics', 'View Analytics')}

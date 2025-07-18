@@ -9,18 +9,7 @@ import {
   Platform,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { 
-  User, 
-  Moon, 
-  LogOut, 
-  Bell, 
-  Shield, 
-  HelpCircle, 
-  Info,
-  ChevronRight,
-  Lock,
-  Settings as SettingsIcon
-} from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 import { useAuth } from '@/hooks/useAuth';
 import { useTheme } from '@/hooks/useTheme';
@@ -76,7 +65,7 @@ export default function SettingsScreen() {
         </View>
         
         {rightComponent || (
-          onPress && <ChevronRight size={20} color={colors.placeholder} />
+          onPress && <Feather name="chevron-right" size={20} color={colors.placeholder} />
         )}
       </TouchableOpacity>
     );
@@ -97,19 +86,19 @@ export default function SettingsScreen() {
           </Text>
           
           {renderSettingItem(
-            <User size={22} color={colors.primary} />,
+            <Feather name="user" size={22} color={colors.primary} />,
             t('settings.profile'),
             handleNavigateToProfile
           )}
           
           {renderSettingItem(
-            <SettingsIcon size={22} color={colors.primary} />,
+            <Feather name="settings" size={22} color={colors.primary} />,
             t('settings.accountSettings'),
             handleNavigateToAccountSettings
           )}
           
           {renderSettingItem(
-            <LogOut size={22} color={colors.error} />,
+            <Feather name="log-out" size={22} color={colors.error} />,
             t('settings.logout'),
             handleLogout
           )}
@@ -121,7 +110,7 @@ export default function SettingsScreen() {
           </Text>
           
           {renderSettingItem(
-            <Moon size={22} color={colors.primary} />,
+            <Feather name="moon" size={22} color={colors.primary} />,
             t('settings.darkMode'),
             undefined,
             <Switch
@@ -133,7 +122,7 @@ export default function SettingsScreen() {
           )}
           
           {renderSettingItem(
-            <Bell size={22} color={colors.primary} />,
+            <Feather name="bell" size={22} color={colors.primary} />,
             t('settings.notifications'),
             () => {}
           )}
@@ -145,13 +134,13 @@ export default function SettingsScreen() {
           </Text>
           
           {renderSettingItem(
-            <HelpCircle size={22} color={colors.primary} />,
+            <Feather name="help-circle" size={22} color={colors.primary} />,
             t('settings.help'),
             () => {}
           )}
           
           {renderSettingItem(
-            <Info size={22} color={colors.primary} />,
+            <Feather name="info" size={22} color={colors.primary} />,
             t('settings.about'),
             handleNavigateToAbout
           )}

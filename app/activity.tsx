@@ -15,24 +15,11 @@ import ActivityCard from "@/components/ActivityCard";
 import { useTheme } from "@/hooks/useTheme";
 import { SIZES } from "@/constants/theme";
 import { Header } from "@/components/Header";
-import { 
-  Zap, 
-  CheckCircle, 
-  Clock, 
-  AlertCircle, 
-  ArrowRight,
-  Activity,
-  Shield,
-  Database,
-  Bell,
-  Building2,
-  FileText,
-  TrendingUp,
-  Rocket
-} from "lucide-react-native";
+
 
 import { ApiState } from "@/@types/api";
 import { useApiSequence } from "@/hooks/useApiSquence";
+import { Feather } from '@expo/vector-icons';
 
 const { width } = Dimensions.get('window');
 
@@ -124,7 +111,7 @@ export default function ActivityScreen() {
         <Animated.View style={[styles.header, headerAnimatedStyle]}>
           <View style={styles.headerContent}>
             <View style={[styles.headerIcon, { backgroundColor: colors.primary + '15' }]}>
-              <Rocket size={32} color={colors.primary} />
+              <Feather name="activity" size={32} color={colors.primary} />
             </View>
             <Text style={[styles.title, { color: colors.text }]}>
               {isComplete ? 'System Ready!' : 'Initializing System'}
@@ -147,7 +134,7 @@ export default function ActivityScreen() {
           ]}>
             <View style={styles.progressHeader}>
               <View style={styles.progressTitleSection}>
-                <Activity size={24} color={colors.primary} />
+                <Feather name="activity" size={24} color={colors.primary} />
                 <Text style={[styles.progressTitle, { color: colors.text }]}>
                   System Progress
                 </Text>
@@ -193,7 +180,7 @@ export default function ActivityScreen() {
               shadows.small
             ]}>
               <View style={[styles.statIcon, { backgroundColor: colors.success + '15' }]}>
-                <CheckCircle size={20} color={colors.success} />
+                <Feather name="check-circle" size={20} color={colors.success} />
               </View>
               <Text style={[styles.statValue, { color: colors.text }]}>
                 {completedCount}
@@ -209,7 +196,7 @@ export default function ActivityScreen() {
               shadows.small
             ]}>
               <View style={[styles.statIcon, { backgroundColor: colors.warning + '15' }]}>
-                <Clock size={20} color={colors.warning} />
+                <Feather name="clock" size={20} color={colors.warning} />
               </View>
               <Text style={[styles.statValue, { color: colors.text }]}>
                 {apiSequence.filter(api => getApiState(api.id).status === "loading").length}
@@ -225,7 +212,7 @@ export default function ActivityScreen() {
               shadows.small
             ]}>
               <View style={[styles.statIcon, { backgroundColor: colors.error + '15' }]}>
-                <AlertCircle size={20} color={colors.error} />
+                <Feather name="alert-circle" size={20} color={colors.error} />
               </View>
               <Text style={[styles.statValue, { color: colors.text }]}>
                 {apiSequence.filter(api => getApiState(api.id).status === "error").length}
@@ -267,7 +254,7 @@ export default function ActivityScreen() {
             shadows.medium
           ]}>
             <View style={[styles.completeIcon, { backgroundColor: colors.success + '15' }]}>
-              <CheckCircle size={48} color={colors.success} />
+              <Feather name="check-circle" size={48} color={colors.success} />
             </View>
             <Text style={[styles.completeTitle, { color: colors.text }]}>
               All Systems Operational!
@@ -277,19 +264,19 @@ export default function ActivityScreen() {
             </Text>
             <View style={styles.completeFeatures}>
               <View style={styles.completeFeature}>
-                <Shield size={16} color={colors.success} />
+                <Feather name="shield" size={16} color={colors.success} />
                 <Text style={[styles.completeFeatureText, { color: colors.placeholder }]}>
                   Secure authentication
                 </Text>
               </View>
               <View style={styles.completeFeature}>
-                <Database size={16} color={colors.success} />
+                <Feather name="database" size={16} color={colors.success} />
                 <Text style={[styles.completeFeatureText, { color: colors.placeholder }]}>
                   Data synchronization
                 </Text>
               </View>
               <View style={styles.completeFeature}>
-                <Bell size={16} color={colors.success} />
+                <Feather name="bell" size={16} color={colors.success} />
                 <Text style={[styles.completeFeatureText, { color: colors.placeholder }]}>
                   Notification system
                 </Text>

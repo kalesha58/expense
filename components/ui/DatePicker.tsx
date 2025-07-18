@@ -9,7 +9,7 @@ import {
   TextStyle,
   StyleProp,
 } from 'react-native';
-import { Calendar } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
 
@@ -144,7 +144,7 @@ export const DatePicker = ({
         >
           {value ? formatDate(value) : placeholder}
         </Text>
-        <Calendar size={20} color={colors.placeholder} />
+        <Feather name="calendar" size={20} color={colors.placeholder} />
         {renderDatePicker()}
       </TouchableOpacity>
       

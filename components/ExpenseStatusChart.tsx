@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import { CheckCircle, Clock, AlertCircle } from 'lucide-react-native';
+import { Feather } from '@expo/vector-icons';
 import { useTheme } from '@/hooks/useTheme';
 import { SIZES } from '@/constants/theme';
 
@@ -31,21 +31,21 @@ export const ExpenseStatusChart = ({ data }: ExpenseStatusChartProps) => {
       count: data.approved,
       percentage: approvedPercentage,
       color: colors.success,
-      icon: <CheckCircle size={16} color={colors.success} />,
+      icon: <Feather name="check-circle" size={16} color={colors.success} />,
     },
     {
       label: 'Pending',
       count: data.pending,
       percentage: pendingPercentage,
       color: colors.warning,
-      icon: <Clock size={16} color={colors.warning} />,
+      icon: <Feather name="clock" size={16} color={colors.warning} />,
     },
     {
       label: 'Rejected',
       count: data.rejected,
       percentage: rejectedPercentage,
       color: colors.error,
-      icon: <AlertCircle size={16} color={colors.error} />,
+      icon: <Feather name="alert-circle" size={16} color={colors.error} />,
     },
   ];
   
