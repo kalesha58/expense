@@ -52,7 +52,7 @@ export const AuthProvider = ({ children }: { children: ReactNode }) => {
       const response = await authAPI.login(username, password);
       
       // Assuming the API returns user data or we just use the username
-      const userData = response.user || { username };
+      const userData = response?.user || { username };
       setUser(userData);
       
       // Store user data in AsyncStorage

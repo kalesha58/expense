@@ -1,6 +1,5 @@
 import { ApiInfo } from "@/@types/api";
 
-
 export const API_SEQUENCE: ApiInfo[] = [
   {
     id: "currencies",

@@ -144,7 +144,7 @@ export default function ExpensesListScreen() {
   };
   
   const handleCreateExpense = () => {
-    router.push('/expenses/create');
+    router.push({ pathname: '/expenses/create', params: { fromDashboard: 'false' } });
   };
 
   const handleFilterChange = (filter: string) => {

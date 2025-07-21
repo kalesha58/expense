@@ -18,6 +18,7 @@ import { SIZES } from '@/constants/theme';
 import { Feather } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
+
 const VERSION = 'ExpenseApp v1.0.0';
 
 export default function LoginScreen() {
@@ -43,7 +44,7 @@ export default function LoginScreen() {
     setIsLoading(true);
     try {
       await login(username, password);
-      router.replace('/activity');
+      router.replace('/select-department');
     } catch (err: any) {
       setError(err.message || 'Login failed');
     } finally {
@@ -155,7 +156,7 @@ export default function LoginScreen() {
               </Text>
             </TouchableOpacity>
 
- 
+
           </View>
         </View>
       </KeyboardAvoidingView>

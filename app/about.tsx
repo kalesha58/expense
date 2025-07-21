@@ -89,17 +89,17 @@ export default function AboutScreen() {
 
   const features = [
     {
-      icon: Feather.name.zap,
+      icon: 'zap',
       title: 'Real-time Sync',
       description: 'Instant synchronization with Oracle EBS backend systems',
     },
     {
-      icon: Feather.name.shield,
+      icon: 'shield',
       title: 'Policy Compliance',
       description: 'Automated policy validation and compliance checking',
     },
     {
-      icon: Feather.name.building,
+      icon: 'home',
       title: 'Enterprise Ready',
       description: 'Built for large-scale enterprise expense management',
     },
@@ -167,7 +167,7 @@ export default function AboutScreen() {
                 ]}
               >
                 <View style={[styles.featureIconContainer, { backgroundColor: colors.primary + '15' }]}>
-                  <IconComponent name={feature.icon} size={24} color={colors.primary} />
+                  <IconComponent name={feature.icon as any} size={24} color={colors.primary} />
                 </View>
                 <View style={styles.featureContent}>
                   <Text style={[styles.featureTitle, { color: colors.text }]}>{feature.title}</Text>

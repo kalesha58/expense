@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useTheme } from '@/hooks/useTheme';
 
-export default function SplashScreen({ onGetStarted }: { onGetStarted?: () => void }) {
+export default function splashScreen({ onGetStarted }: { onGetStarted?: () => void }) {
   const { colors } = useTheme();
   return (
     <View style={[styles.container, { backgroundColor: colors.background }]}>

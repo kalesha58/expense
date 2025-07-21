@@ -134,9 +134,9 @@ export default function SettingsScreen() {
           </Text>
           
           {renderSettingItem(
-            <Feather name="help-circle" size={22} color={colors.primary} />,
+            <Feather name="help-circle" size={22} color={colors.primary} />, 
             t('settings.help'),
-            () => {}
+            () => router.push('/ai-chat')
           )}
           
           {renderSettingItem(

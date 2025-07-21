@@ -1,5 +1,5 @@
 import { useCallback } from "react";
-import { StyleSheet, Text, View, ScrollView, RefreshControl, Dimensions } from "react-native";
+import { StyleSheet, Text, View, ScrollView, RefreshControl, Dimensions, TouchableOpacity } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { useFocusEffect } from "expo-router";
 import Animated, { 
@@ -247,7 +247,7 @@ export default function ActivityScreen() {
         </View>
 
         {/* Completion Section */}
-        {isComplete && (
+        {isComplete && apiSequence.every(api => getApiState(api.id).status === "success") && (
           <View style={[
             styles.completeContainer,
             { backgroundColor: colors.card, borderColor: colors.border },
@@ -282,6 +282,34 @@ export default function ActivityScreen() {
                 </Text>
               </View>
             </View>
+          </View>
+        )}
+
+        {/* Sync Button for Failed APIs */}
+        {isComplete && apiSequence.some(api => getApiState(api.id).status === "error") && !apiSequence.every(api => getApiState(api.id).status === "success") && (
+          <View style={[
+            styles.syncContainer,
+            { backgroundColor: colors.card, borderColor: colors.border },
+            shadows.medium
+          ]}>
+            <View style={[styles.syncIcon, { backgroundColor: colors.warning + '15' }]}>
+              <Feather name="refresh-cw" size={32} color={colors.warning} />
+            </View>
+            <Text style={[styles.syncTitle, { color: colors.text }]}>
+              Some Services Failed
+            </Text>
+            <Text style={[styles.syncText, { color: colors.placeholder }]}>
+              Some APIs failed to load. Click sync to retry failed services.
+            </Text>
+            <TouchableOpacity
+              style={[styles.syncButton, { backgroundColor: colors.primary }]}
+              onPress={resetSequence}
+            >
+              <Feather name="refresh-cw" size={20} color="#fff" />
+              <Text style={[styles.syncButtonText, { color: '#fff' }]}>
+                Sync Again
+              </Text>
+            </TouchableOpacity>
           </View>
         )}
       </ScrollView>
@@ -458,5 +486,44 @@ const styles = StyleSheet.create({
   completeFeatureText: {
     fontSize: SIZES.small,
     fontWeight: '500',
+  },
+  syncContainer: {
+    borderRadius: SIZES.radius,
+    padding: 24,
+    borderWidth: 1,
+    alignItems: 'center',
+    marginTop: 16,
+  },
+  syncIcon: {
+    width: 64,
+    height: 64,
+    borderRadius: 32,
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginBottom: 16,
+  },
+  syncTitle: {
+    fontSize: SIZES.large,
+    fontWeight: 'bold',
+    marginBottom: 8,
+    textAlign: 'center',
+  },
+  syncText: {
+    fontSize: SIZES.medium,
+    textAlign: 'center',
+    lineHeight: 22,
+    marginBottom: 20,
+  },
+  syncButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    paddingHorizontal: 24,
+    paddingVertical: 12,
+    borderRadius: 8,
+    gap: 8,
+  },
+  syncButtonText: {
+    fontSize: SIZES.medium,
+    fontWeight: '600',
   },
 });

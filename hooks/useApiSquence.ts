@@ -2,8 +2,8 @@ import { useCallback, useEffect, useReducer } from "react";
 import { router } from "expo-router";
 
 import { API_SEQUENCE } from "@/constants/api";
-import { mockFetchApi } from "@/services/api";
-import { ApiSequenceState } from "@/@types/api";
+import { fetchApi } from "@/services/api";
+import { ApiSequenceState, ApiState } from "@/@types/api";
 
 
 // Initial state for the API sequence
@@ -68,8 +68,8 @@ export function useApiSequence() {
     dispatch({ type: "API_START", apiId: apiInfo.id });
 
     try {
-      // Using mock API for development
-      const data = await mockFetchApi(apiInfo);
+      // Using real API calls
+      const data = await fetchApi(apiInfo);
       dispatch({ type: "API_SUCCESS", apiId: apiInfo.id, data });
     } catch (error) {
       dispatch({ 
@@ -90,12 +90,19 @@ export function useApiSequence() {
 
   // Execute API steps sequentially
   useEffect(() => {
+    // Only navigate if all APIs are successful
     if (state.isComplete) {
-      // Navigate to dashboard after a short delay
-      const timer = setTimeout(() => {
-        router.replace("/");
-      }, 1000);
-      return () => clearTimeout(timer);
+      const allSuccessful = API_SEQUENCE.every(api => 
+        (state[api.id as keyof typeof state] as ApiState)?.status === "success"
+      );
+      
+      if (allSuccessful) {
+        // Navigate to dashboard after a short delay
+        const timer = setTimeout(() => {
+          router.replace("/");
+        }, 1000);
+        return () => clearTimeout(timer);
+      }
     }
 
     executeApiStep(state.currentStep);

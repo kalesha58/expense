@@ -61,7 +61,7 @@ export default function DashboardScreen() {
   };
   
   const handleCreateExpense = () => {
-    router.push('/expenses/create');
+    router.push({ pathname: '/expenses/create', params: { fromDashboard: 'true' } });
   };
   
   const handleViewAllExpenses = () => {

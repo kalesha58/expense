@@ -1,14 +1,13 @@
 import React, { useState } from 'react';
-import { 
-  View, 
-  Text, 
-  StyleSheet, 
-  ScrollView, 
-  TouchableOpacity,
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
   Alert,
 } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import { useRouter } from 'expo-router';
+import { useRouter, useLocalSearchParams } from 'expo-router';
 import { useExpense } from '@/hooks/useExpense';
 import { useTheme } from '@/hooks/useTheme';
 import { Header } from '@/components/Header';
@@ -21,63 +20,35 @@ import { EXPENSE_TYPES, BUSINESS_UNITS } from '@/constants/mockData';
 
 export default function CreateExpenseScreen() {
   const router = useRouter();
+  const params = useLocalSearchParams();
+  const fromDashboard = params.fromDashboard === 'true';
   const { colors, shadows } = useTheme();
-  const { header, updateHeader, saveAsDraft } = useExpense();
-  
+  const { header, updateHeader } = useExpense();
+
   const [errors, setErrors] = useState<Record<string, string>>({});
-  const [isLoading, setIsLoading] = useState(false);
-  
+
   const validateForm = () => {
     const newErrors: Record<string, string> = {};
-    
-    if (!header.title.trim()) {
-      newErrors.title = 'Report title is required';
-    }
-    
-    if (!header.purpose.trim()) {
-      newErrors.purpose = 'Purpose is required';
-    }
-    
-    if (!header.expenseType) {
-      newErrors.expenseType = 'Expense type is required';
-    }
-    
-    if (!header.businessUnit) {
-      newErrors.businessUnit = 'Business unit is required';
-    }
-    
+    if (!header.title.trim()) newErrors.title = 'Report title is required';
+    if (!header.purpose.trim()) newErrors.purpose = 'Purpose is required';
+    if (!header.expenseType) newErrors.expenseType = 'Expense type is required';
+    if (!header.businessUnit) newErrors.businessUnit = 'Business unit is required';
+    if (!header.date) newErrors.date = 'Date is required';
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
-  
-  const handleSaveAsDraft = async () => {
-    if (!validateForm()) return;
-    
-    try {
-      setIsLoading(true);
-      await saveAsDraft();
-      Alert.alert('Success', 'Expense report saved as draft');
-      router.back();
-    } catch (error) {
-      Alert.alert('Error', 'Failed to save expense report');
-    } finally {
-      setIsLoading(false);
-    }
-  };
-  
-  const handleContinue = () => {
+
+  const handleContinueToLineItems = () => {
     if (!validateForm()) return;
     router.push('/expenses/add-line-item');
   };
-  
+
   return (
     <SafeAreaView style={[styles.container, { backgroundColor: colors.background }]}>
-      <Header 
-        title="Create Expense Report" 
-        showBackButton={true}
-      />
-      
-      <ScrollView 
+      <Header title="Create Expense Report" showBackButton />
+
+      <ScrollView
         style={styles.scrollView}
         contentContainerStyle={styles.scrollContent}
         keyboardShouldPersistTaps="handled"
@@ -91,7 +62,7 @@ export default function CreateExpenseScreen() {
             Fill in the basic information for your expense report
           </Text>
         </View>
-        
+
         <View style={[styles.formCard, { backgroundColor: colors.card, borderColor: colors.border }, shadows.small]}>
           <Input
             label="Report Title"
@@ -101,7 +72,7 @@ export default function CreateExpenseScreen() {
             error={errors.title}
             containerStyle={styles.inputContainer}
           />
-          
+
           <Input
             label="Purpose"
             placeholder="Enter purpose of expense"
@@ -114,7 +85,7 @@ export default function CreateExpenseScreen() {
             style={{ height: 80, paddingTop: 12 }}
             containerStyle={styles.inputContainer}
           />
-          
+
           <Dropdown
             label="Expense Type"
             placeholder="Select expense type"
@@ -124,7 +95,7 @@ export default function CreateExpenseScreen() {
             error={errors.expenseType}
             containerStyle={styles.inputContainer}
           />
-          
+
           <Dropdown
             label="Business Unit"
             placeholder="Select business unit"
@@ -134,7 +105,7 @@ export default function CreateExpenseScreen() {
             error={errors.businessUnit}
             containerStyle={styles.inputContainer}
           />
-          
+
           <DatePicker
             label="Date"
             value={header.date}
@@ -142,28 +113,21 @@ export default function CreateExpenseScreen() {
             containerStyle={styles.inputContainer}
           />
         </View>
-        
+
         <View style={styles.actionsContainer}>
           <Button
-            title="Save as Draft"
-            onPress={handleSaveAsDraft}
-            variant="outline"
-            loading={isLoading}
-            style={styles.actionButton}
-          />
-          <Button
             title="Continue"
-            onPress={handleContinue}
+            onPress={handleContinueToLineItems}
             style={styles.actionButton}
           />
         </View>
-        
+
         <View style={styles.helpSection}>
           <Text style={[styles.helpTitle, { color: colors.text }]}>
             Need Help?
           </Text>
           <Text style={[styles.helpText, { color: colors.placeholder }]}>
-            You can save your progress as a draft and continue later. 
+            You can save your progress as a draft later on the review screen.
             All information will be preserved.
           </Text>
         </View>
@@ -173,48 +137,26 @@ export default function CreateExpenseScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-  scrollView: {
-    flex: 1,
-  },
-  scrollContent: {
-    paddingHorizontal: 16,
-    paddingVertical: 12,
-  },
-  headerSection: {
-    marginBottom: 20,
-  },
-  sectionTitle: {
-    fontSize: SIZES.xxlarge,
-    fontWeight: '700',
-    marginBottom: 8,
-  },
-  sectionSubtitle: {
-    fontSize: SIZES.medium,
-    lineHeight: 20,
-  },
+  container: { flex: 1 },
+  scrollView: { flex: 1 },
+  scrollContent: { paddingHorizontal: 16, paddingVertical: 12 },
+  headerSection: { marginBottom: 20 },
+  sectionTitle: { fontSize: SIZES.xxlarge, fontWeight: '700', marginBottom: 8 },
+  sectionSubtitle: { fontSize: SIZES.medium, lineHeight: 20 },
   formCard: {
     borderRadius: SIZES.radius * 2,
     padding: 20,
     borderWidth: 1,
     marginBottom: 24,
   },
-  inputContainer: {
-    marginBottom: 20,
-  },
+  inputContainer: { marginBottom: 20 },
   actionsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between',
     marginBottom: 24,
     gap: 12,
   },
-  actionButton: {
-    flex: 1,
-    marginTop: 0,
-    marginBottom: 0,
-  },
+  actionButton: { flex: 1, marginTop: 0, marginBottom: 0 },
   helpSection: {
     paddingVertical: 16,
     paddingHorizontal: 16,
@@ -223,13 +165,6 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: 'rgba(0, 122, 255, 0.1)',
   },
-  helpTitle: {
-    fontSize: SIZES.medium,
-    fontWeight: '600',
-    marginBottom: 8,
-  },
-  helpText: {
-    fontSize: SIZES.small,
-    lineHeight: 18,
-  },
+  helpTitle: { fontSize: SIZES.medium, fontWeight: '600', marginBottom: 8 },
+  helpText: { fontSize: SIZES.small, lineHeight: 18 },
 });
